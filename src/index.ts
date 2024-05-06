@@ -1,4 +1,4 @@
-import { antfu } from './factory'
+import { iz7n } from './factory'
 
 export * from './configs'
 export * from './factory'
@@ -6,4 +6,4 @@ export * from './globs'
 export * from './types'
 export * from './utils'
 
-export default antfu
+export default iz7n
