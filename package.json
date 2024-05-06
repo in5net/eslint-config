@@ -1,7 +1,7 @@
 {
   "name": "@iz7n/eslint-config",
   "type": "module",
-  "version": "0.7.2",
+  "version": "0.8.0",
   "description": "iz7n's ESLint config",
   "author": "iz7n",
   "license": "MIT",
