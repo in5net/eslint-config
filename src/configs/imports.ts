@@ -1,20 +1,19 @@
-import { GLOB_SRC_EXT } from '../globs'
-import { pluginAntfu, pluginImport } from '../plugins'
-import type { TypedFlatConfigItem } from '../types'
+import { GLOB_SRC_EXT } from "../globs";
+import { pluginAntfu, pluginImport } from "../plugins";
+import type { TypedFlatConfigItem } from "../types";
 
 export async function imports(): Promise<TypedFlatConfigItem[]> {
-
-  return [
-    {
-      name: 'iz7n/imports/rules',
-      plugins: {
-        antfu: pluginAntfu,
-        import: pluginImport,
-      },
-      rules: {
-        'antfu/import-dedupe': 'error',
-        'antfu/no-import-dist': 'error',
-        'antfu/no-import-node-modules-by-path': 'error',
+	return [
+		{
+			name: "iz7n/imports/rules",
+			plugins: {
+				antfu: pluginAntfu,
+				import: pluginImport,
+			},
+			rules: {
+				"antfu/import-dedupe": "error",
+				"antfu/no-import-dist": "error",
+				"antfu/no-import-node-modules-by-path": "error",
 
 				"import/default": "error",
 				"import/export": "error",
@@ -36,16 +35,15 @@ export async function imports(): Promise<TypedFlatConfigItem[]> {
 				"import/no-unused-modules": "error",
 				"import/no-useless-path-segments": "error",
 				"no-duplicate-imports": "off",
-
-      },
-    },
-    {
-      files: ['**/bin/**/*', `**/bin.${GLOB_SRC_EXT}`],
-      name: 'iz7n/imports/disables/bin',
-      rules: {
-        'antfu/no-import-dist': 'off',
-        'antfu/no-import-node-modules-by-path': 'off',
-      },
-    },
-  ]
+			},
+		},
+		{
+			files: ["**/bin/**/*", `**/bin.${GLOB_SRC_EXT}`],
+			name: "iz7n/imports/disables/bin",
+			rules: {
+				"antfu/no-import-dist": "off",
+				"antfu/no-import-node-modules-by-path": "off",
+			},
+		},
+	];
 }

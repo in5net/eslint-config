@@ -1,13 +1,12 @@
-import { pluginPerfectionist } from '../plugins';
-import type { TypedFlatConfigItem } from '../types';
+import { pluginPerfectionist } from "../plugins";
+import type { TypedFlatConfigItem } from "../types";
 
 /**
  * Optional perfectionist plugin for props and items sorting.
- *
  * @see https://github.com/azat-io/eslint-plugin-perfectionist
  */
 export async function perfectionist(): Promise<TypedFlatConfigItem[]> {
-  return [
+	return [
 		{
 			name: "iz7n/perfectionist/setup",
 			plugins: {
@@ -25,7 +24,12 @@ export async function perfectionist(): Promise<TypedFlatConfigItem[]> {
 					{
 						"custom-groups": {
 							value: {
-								svelte: ["**/*.svelte", "./*.svelte","../*.svelte", "../**/*.svelte"],
+								svelte: [
+									"**/*.svelte",
+									"./*.svelte",
+									"../*.svelte",
+									"../**/*.svelte",
+								],
 							},
 						},
 						"groups": [

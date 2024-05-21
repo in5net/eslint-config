@@ -1,19 +1,18 @@
-import { pluginUnicorn } from '../plugins'
-import type { TypedFlatConfigItem } from '../types'
+import { pluginUnicorn } from "../plugins";
+import type { TypedFlatConfigItem } from "../types";
 
 export async function unicorn(): Promise<TypedFlatConfigItem[]> {
-  return [
-    {
-      name: 'iz7n/unicorn/rules',
-      plugins: {
-        unicorn: pluginUnicorn,
-      },
-      rules: {
-        "no-array-constructor": "off",
+	return [
+		{
+			name: "iz7n/unicorn/rules",
+			plugins: {
+				unicorn: pluginUnicorn,
+			},
+			rules: {
+				"no-array-constructor": "off",
 				"no-negated-condition": "off",
 				"unicorn/better-regex": "error",
 				"unicorn/catch-error-name": "error",
-				"unicorn/consistent-function-scoping": "error",
 				"unicorn/custom-error-definition": "error",
 				"unicorn/error-message": "error",
 				"unicorn/escape-case": "error",
@@ -108,7 +107,7 @@ export async function unicorn(): Promise<TypedFlatConfigItem[]> {
 				"unicorn/template-indent": "error",
 				"unicorn/text-encoding-identifier-case": "error",
 				"unicorn/throw-new-error": "error",
-      },
-    },
-  ]
+			},
+		},
+	];
 }

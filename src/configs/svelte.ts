@@ -1,62 +1,64 @@
-import { GLOB_SVELTE } from '../globs'
-import type { OptionsFiles, OptionsHasTypeScript, OptionsOverrides, TypedFlatConfigItem } from '../types'
-import { ensurePackages, interopDefault } from '../utils'
+import { GLOB_SVELTE } from "../globs";
+import type {
+	OptionsFiles,
+	OptionsHasTypeScript,
+	OptionsOverrides,
+	TypedFlatConfigItem,
+} from "../types";
+import { ensurePackages, interopDefault } from "../utils";
 
 export async function svelte(
-  options: OptionsHasTypeScript & OptionsOverrides & OptionsFiles = {},
+	options: OptionsHasTypeScript & OptionsOverrides & OptionsFiles = {},
 ): Promise<TypedFlatConfigItem[]> {
-  const {
-    files = [GLOB_SVELTE],
-    overrides = {},
+	const { files = [GLOB_SVELTE], overrides = {} } = options;
 
-  } = options
+	await ensurePackages(["eslint-plugin-svelte"]);
 
-  await ensurePackages([
-    'eslint-plugin-svelte',
-  ])
+	const [pluginSvelte, parserSvelte] = await Promise.all([
+		interopDefault(import("eslint-plugin-svelte")),
+		interopDefault(import("svelte-eslint-parser")),
+	] as const);
 
-  const [
-    pluginSvelte,
-    parserSvelte,
-  ] = await Promise.all([
-    interopDefault(import('eslint-plugin-svelte')),
-    interopDefault(import('svelte-eslint-parser')),
-  ] as const)
-
-  return [
-    {
-      name: 'iz7n/svelte/setup',
-      plugins: {
-        svelte: pluginSvelte,
-      },
-    },
-    {
-      files,
-      languageOptions: {
-        parser: parserSvelte,
-        parserOptions: {
-          extraFileExtensions: ['.svelte'],
-          parser: options.typescript
-            ? await interopDefault(import('@typescript-eslint/parser')) as any
-            : null,
-        },
-      },
-      name: 'iz7n/svelte/rules',
-      processor: pluginSvelte.processors['.svelte'],
-      rules: {
-        "import/no-mutable-exports": "off", // Svelte props are declared as mutable exports
+	return [
+		{
+			name: "iz7n/svelte/setup",
+			plugins: {
+				svelte: pluginSvelte,
+			},
+		},
+		{
+			files,
+			languageOptions: {
+				parser: parserSvelte,
+				parserOptions: {
+					extraFileExtensions: [".svelte"],
+					parser:
+						options.typescript ?
+							((await interopDefault(
+								import("@typescript-eslint/parser"),
+							)) as any)
+						:	null,
+				},
+			},
+			name: "iz7n/svelte/rules",
+			processor: pluginSvelte.processors[".svelte"],
+			rules: {
+				"import/no-mutable-exports": "off", // Svelte props are declared as mutable exports
 				"no-inner-declarations": "off", // Svelte <script> tags are considered render() functions so being able to declare functions inside them is useful
 				"no-nested-ternary": "off", // Often used to define a prop
+				"no-undef": "off", // Incompatible with most recent (attribute-form) generic types RFC
 				"no-undef-init": "off", // Optional props can have a default value of undefined
-        'no-undef': 'off', // incompatible with most recent (attribute-form) generic types RFC
-        'no-unused-vars': ['error', {
-          args: 'none',
-          caughtErrors: 'none',
-          ignoreRestSiblings: true,
-          vars: 'all',
-          varsIgnorePattern: '^(\\$\\$Props$|\\$\\$Events$|\\$\\$Slots$)',
-        }],
-        "svelte/block-lang": [
+				"no-unused-vars": [
+					"error",
+					{
+						args: "none",
+						caughtErrors: "none",
+						ignoreRestSiblings: true,
+						vars: "all",
+						varsIgnorePattern: "^(\\$\\$Props$|\\$\\$Events$|\\$\\$Slots$)",
+					},
+				],
+				"svelte/block-lang": [
 					"error",
 					{
 						enforceScriptPresent: true,
@@ -124,17 +126,19 @@ export async function svelte(
 				"unicorn/filename-case": "off", // Svelte components are usually PascalCase
 				"unicorn/no-useless-undefined": "off", // Optional props can have a default value of undefined
 				"unicorn/prefer-top-level-await": "off", // Can't use top-level await in Svelte
-				
 
-        'unused-imports/no-unused-vars': [
-          'error',
-          { args: 'after-used', argsIgnorePattern: '^_', vars: 'all', varsIgnorePattern: '^(_|\\$\\$Props$|\\$\\$Events$|\\$\\$Slots$)' },
-        ],
+				"unused-imports/no-unused-vars": [
+					"error",
+					{
+						args: "after-used",
+						argsIgnorePattern: "^_",
+						vars: "all",
+						varsIgnorePattern: "^(_|\\$\\$Props$|\\$\\$Events$|\\$\\$Slots$)",
+					},
+				],
 
-        
-
-        ...overrides,
-      },
-    },
-  ]
+				...overrides,
+			},
+		},
+	];
 }

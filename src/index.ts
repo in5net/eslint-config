@@ -1,9 +1,10 @@
-import { iz7n } from './factory'
+import { iz7n } from "./factory";
 
-export * from './configs'
-export * from './factory'
-export * from './globs'
-export * from './types'
-export * from './utils'
+export * from "./configs";
+export * from "./factory";
+export * from "./globs";
+export * from "./types";
+export * from "./utils";
 
-export default iz7n
+// eslint-disable-next-line unicorn/prefer-export-from
+export default iz7n;

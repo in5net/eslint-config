@@ -1,46 +1,43 @@
-import globals from 'globals'
-import { GLOB_SRC, GLOB_SRC_EXT } from '../globs'
-import { pluginUnusedImports } from '../plugins'
-import type { OptionsOverrides, TypedFlatConfigItem } from '../types'
+import { GLOB_SRC, GLOB_SRC_EXT } from "../globs";
+import { pluginUnusedImports } from "../plugins";
+import type { OptionsOverrides, TypedFlatConfigItem } from "../types";
+import globals from "globals";
 
 export async function javascript(
-  options:  OptionsOverrides = {},
+	options: OptionsOverrides = {},
 ): Promise<TypedFlatConfigItem[]> {
-  const {
+	const { overrides = {} } = options;
 
-    overrides = {},
-  } = options
-
-  return [
-    {
-      languageOptions: {
-        ecmaVersion: 2022,
-        globals: {
-          ...globals.browser,
-          ...globals.es2021,
-          ...globals.node,
-          document: 'readonly',
-          navigator: 'readonly',
-          window: 'readonly',
-        },
-        parserOptions: {
-          ecmaFeatures: {
-            jsx: true,
-          },
-          ecmaVersion: 2022,
-          sourceType: 'module',
-        },
-        sourceType: 'module',
-      },
-      linterOptions: {
-        reportUnusedDisableDirectives: true,
-      },
-      name: 'iz7n/javascript/rules',
-      plugins: {
-        'unused-imports': pluginUnusedImports,
-      },
-      rules: {
-        "accessor-pairs": "error",
+	return [
+		{
+			languageOptions: {
+				ecmaVersion: 2022,
+				globals: {
+					...globals.browser,
+					...globals.es2021,
+					...globals.node,
+					document: "readonly",
+					navigator: "readonly",
+					window: "readonly",
+				},
+				parserOptions: {
+					ecmaFeatures: {
+						jsx: true,
+					},
+					ecmaVersion: 2022,
+					sourceType: "module",
+				},
+				sourceType: "module",
+			},
+			linterOptions: {
+				reportUnusedDisableDirectives: true,
+			},
+			name: "iz7n/javascript/rules",
+			plugins: {
+				"unused-imports": pluginUnusedImports,
+			},
+			rules: {
+				"accessor-pairs": "error",
 				"array-callback-return": "error",
 				"arrow-body-style": "error",
 				"block-scoped-var": "error",
@@ -230,15 +227,15 @@ export async function javascript(
 				"vars-on-top": "error",
 				"yoda": "error",
 
-        ...overrides,
-      },
-    },
-    {
-      files: [`scripts/${GLOB_SRC}`, `cli.${GLOB_SRC_EXT}`],
-      name: 'iz7n/javascript/disables/cli',
-      rules: {
-        'no-console': 'off',
-      },
-    },
-  ]
+				...overrides,
+			},
+		},
+		{
+			files: [`scripts/${GLOB_SRC}`, `cli.${GLOB_SRC_EXT}`],
+			name: "iz7n/javascript/disables/cli",
+			rules: {
+				"no-console": "off",
+			},
+		},
+	];
 }

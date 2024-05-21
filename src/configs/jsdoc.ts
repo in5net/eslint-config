@@ -1,17 +1,15 @@
-import type { TypedFlatConfigItem } from '../types'
-import { interopDefault } from '../utils'
+import type { TypedFlatConfigItem } from "../types";
+import { interopDefault } from "../utils";
 
 export async function jsdoc(): Promise<TypedFlatConfigItem[]> {
-
-
-  return [
-    {
-      name: 'iz7n/jsdoc/rules',
-      plugins: {
-        jsdoc: await interopDefault(import('eslint-plugin-jsdoc')),
-      },
-      rules: {
-        "jsdoc/check-access": "warn",
+	return [
+		{
+			name: "iz7n/jsdoc/rules",
+			plugins: {
+				jsdoc: await interopDefault(import("eslint-plugin-jsdoc")),
+			},
+			rules: {
+				"jsdoc/check-access": "warn",
 				"jsdoc/check-alignment": "warn",
 				"jsdoc/check-indentation": "warn",
 				"jsdoc/check-line-alignment": "warn",
@@ -44,7 +42,7 @@ export async function jsdoc(): Promise<TypedFlatConfigItem[]> {
 				"jsdoc/sort-tags": "warn",
 				"jsdoc/tag-lines": "warn",
 				"jsdoc/valid-types": "warn",
-      },
-    },
-  ]
+			},
+		},
+	];
 }
