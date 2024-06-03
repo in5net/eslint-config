@@ -135,10 +135,10 @@ export function iz7n(
 
 	// User can optionally pass a flat config item to the first argument
 	// We pick the known keys as ESLint would do schema validation
-	const fusedConfig = flatConfigProps.reduce((acc, key) => {
-		if (key in options) acc[key] = options[key] as any;
-		return acc;
-	}, {} as TypedFlatConfigItem);
+	const fusedConfig = {} as TypedFlatConfigItem;
+	for (const key of flatConfigProps) {
+		if (key in options) fusedConfig[key] = options[key] as any;
+	}
 	if (Object.keys(fusedConfig).length) configs.push([fusedConfig]);
 
 	let composer = new FlatConfigComposer<TypedFlatConfigItem, ConfigNames>();
