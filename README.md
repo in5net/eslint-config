@@ -13,14 +13,6 @@
 
 ## Usage
 
-### Starter Wizard
-
-We provided a CLI tool to help you set up your project, or migrate from the legacy config to the new flat config with one command.
-
-```bash
-npx @iz7n/eslint-config@latest
-```
-
 ### Manual Install
 
 If you prefer to set up manually:
@@ -33,9 +25,9 @@ And create `eslint.config.mjs` in your project root:
 
 ```js
 // eslint.config.mjs
-import iz7n from '@iz7n/eslint-config'
+import iz7n from "@iz7n/eslint-config";
 
-export default iz7n()
+export default iz7n();
 ```
 
 <details>
@@ -47,10 +39,10 @@ If you still use some configs from the legacy eslintrc format, you can use the [
 
 ```js
 // eslint.config.mjs
-import iz7n from '@iz7n/eslint-config'
-import { FlatCompat } from '@eslint/eslintrc'
+import iz7n from "@iz7n/eslint-config";
+import { FlatCompat } from "@eslint/eslintrc";
 
-const compat = new FlatCompat()
+const compat = new FlatCompat();
 
 export default iz7n(
   {
@@ -60,13 +52,13 @@ export default iz7n(
   // Legacy config
   ...compat.config({
     extends: [
-      'eslint:recommended',
+      "eslint:recommended",
       // Other extends...
     ],
-  })
+  }),
 
   // Other flat configs...
-)
+);
 ```
 
 > Note that `.eslintignore` no longer works in Flat config, see [customization](#customization) for more details.
@@ -86,6 +78,154 @@ For example:
 }
 ```
 
+## IDE Support (auto fix on save)
+
+<details>
+<summary>🟦 VS Code support</summary>
+
+<br>
+
+Install [VS Code ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+
+Add the following settings to your `.vscode/settings.json`:
+
+```jsonc
+{
+  // Disable the default formatter, use eslint instead
+  "prettier.enable": false,
+  "editor.formatOnSave": false,
+
+  // Auto fix
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never",
+  },
+
+  // Silent the stylistic rules in you IDE, but still auto fix them
+  "eslint.rules.customizations": [
+    { "rule": "style/*", "severity": "off", "fixable": true },
+    { "rule": "format/*", "severity": "off", "fixable": true },
+    { "rule": "*-indent", "severity": "off", "fixable": true },
+    { "rule": "*-spacing", "severity": "off", "fixable": true },
+    { "rule": "*-spaces", "severity": "off", "fixable": true },
+    { "rule": "*-order", "severity": "off", "fixable": true },
+    { "rule": "*-dangle", "severity": "off", "fixable": true },
+    { "rule": "*-newline", "severity": "off", "fixable": true },
+    { "rule": "*quotes", "severity": "off", "fixable": true },
+    { "rule": "*semi", "severity": "off", "fixable": true },
+  ],
+
+  // Enable eslint for all supported languages
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "html",
+    "markdown",
+    "json",
+    "jsonc",
+    "yaml",
+    "toml",
+    "xml",
+    "gql",
+    "graphql",
+    "astro",
+    "svelte",
+    "css",
+    "less",
+    "scss",
+    "pcss",
+    "postcss",
+  ],
+}
+```
+
+</details>
+
+<details>
+<summary>🟩 Neovim Support</summary>
+
+<br>
+
+Update your configuration to use the following:
+
+```lua
+local customizations = {
+  { rule = 'style/*', severity = 'off', fixable = true },
+  { rule = 'format/*', severity = 'off', fixable = true },
+  { rule = '*-indent', severity = 'off', fixable = true },
+  { rule = '*-spacing', severity = 'off', fixable = true },
+  { rule = '*-spaces', severity = 'off', fixable = true },
+  { rule = '*-order', severity = 'off', fixable = true },
+  { rule = '*-dangle', severity = 'off', fixable = true },
+  { rule = '*-newline', severity = 'off', fixable = true },
+  { rule = '*quotes', severity = 'off', fixable = true },
+  { rule = '*semi', severity = 'off', fixable = true },
+}
+
+local lspconfig = require('lspconfig')
+-- Enable eslint for all supported languages
+lspconfig.eslint.setup(
+  {
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "javascript.jsx",
+      "typescript",
+      "typescriptreact",
+      "typescript.tsx",
+      "vue",
+      "html",
+      "markdown",
+      "json",
+      "jsonc",
+      "yaml",
+      "toml",
+      "xml",
+      "gql",
+      "graphql",
+      "astro",
+      "svelte",
+      "css",
+      "less",
+      "scss",
+      "pcss",
+      "postcss"
+    },
+    settings = {
+      -- Silent the stylistic rules in you IDE, but still auto fix them
+      rulesCustomizations = customizations,
+    },
+  }
+)
+```
+
+### Neovim format on save
+
+There's few ways you can achieve format on save in neovim:
+
+- `nvim-lspconfig` has a `EslintFixAll` command predefined, you can create a autocmd to call this command after saving file.
+
+```lua
+lspconfig.eslint.setup({
+  --- ...
+  on_attach = function(client, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end,
+})
+```
+
+- Use [conform.nvim](https://github.com/stevearc/conform.nvim).
+- Use [none-ls](https://github.com/nvimtools/none-ls.nvim)
+- Use [nvim-lint](https://github.com/mfussenegger/nvim-lint)
+
+</details>
+
 ## Customization
 
 Since v1.0, we migrated to [ESLint Flat config](https://eslint.org/docs/latest/use/configure/configuration-files-new). It provides much better organization and composition.
@@ -94,19 +234,19 @@ Normally you only need to import the `iz7n` preset:
 
 ```js
 // eslint.config.js
-import iz7n from '@iz7n/eslint-config'
+import iz7n from "@iz7n/eslint-config";
 
-export default iz7n()
+export default iz7n();
 ```
 
 And that's it! Or you can configure each integration individually, for example:
 
 ```js
 // eslint.config.js
-import iz7n from '@iz7n/eslint-config'
+import iz7n from "@iz7n/eslint-config";
 
 export default iz7n({
-  // TypeScript and Svelte are auto-detected, you can also explicitly enable them:
+  // TypeScript and Vue are auto-detected, you can also explicitly enable them:
   typescript: true,
   svelte: true,
 
@@ -115,17 +255,17 @@ export default iz7n({
 
   // `.eslintignore` is no longer supported in Flat config, use `ignores` instead
   ignores: [
-    '**/fixtures',
+    "**/fixtures",
     // ...globs
-  ]
-})
+  ],
+});
 ```
 
 The `iz7n` factory function also accepts any number of arbitrary custom config overrides:
 
 ```js
 // eslint.config.js
-import iz7n from '@iz7n/eslint-config'
+import iz7n from "@iz7n/eslint-config";
 
 export default iz7n(
   {
@@ -135,13 +275,13 @@ export default iz7n(
   // From the second arguments they are ESLint Flat Configs
   // you can have multiple configs
   {
-    files: ['**/*.ts'],
+    files: ["**/*.ts"],
     rules: {},
   },
   {
     rules: {},
   },
-)
+);
 ```
 
 Going more advanced, you can also import fine-grained configs and compose them as you wish:
@@ -166,7 +306,7 @@ import {
   sortTsconfig,
   typescript,
   unicorn,
-} from '@iz7n/eslint-config'
+} from "@iz7n/eslint-config";
 
 export default combine(
   ignores(),
@@ -178,7 +318,7 @@ export default combine(
   unicorn(),
   typescript(/* Options */),
   jsonc(),
-)
+);
 ```
 
 </details>
@@ -205,33 +345,62 @@ When you want to override rules, or disable them inline, you need to update to t
 type foo = { bar: 2 }
 ```
 
+> [!NOTE]
+> About plugin renaming - it is actually rather a dangrous move that might leading to potential naming collisions, pointed out [here](https://github.com/eslint/eslint/discussions/17766) and [here](https://github.com/prettier/eslint-config-prettier#eslintconfigjs-flat-config-plugin-caveat). As this config also very **personal** and **opinionated**, I ambitiously position this config as the only **"top-level"** config per project, that might pivots the taste of how rules are named.
+>
+> This config cares more about the user-facings DX, and try to ease out the implementation details. For example, users could keep using the semantic `import/order` without ever knowing the underlying plugin has migrated twice to `eslint-plugin-i` and then to `eslint-plugin-import-x`. User are also not forced to migrate to the implicit `i/order` halfway only because we swapped the implementation to a fork.
+>
+> That said, it's probably still not a good idea. You might not want to doing this if you are maintaining your own eslint config.
+>
+> Feel free to open issues if you want to combine this config with some other config presets but faced naming collisions. I am happy to figure out a way to make them work. But at this moment I have no plan to revert the renaming.
+
+Since v2.9.0, this preset will automatically rename the plugins also for your custom configs. You can use the original prefix to override the rules directly.
+
+<details>
+<summary>Change back to original prefix</summary>
+
+If you really want to use the original prefix, you can revert the plugin renaming by:
+
+```ts
+import antfu from "@antfu/eslint-config";
+
+export default antfu().renamePlugins({
+  ts: "@typescript-eslint",
+  yaml: "yml",
+  node: "n",
+  // ...
+});
+```
+
+</details>
+
 ### Rules Overrides
 
 Certain rules would only be enabled in specific files, for example, `ts/*` rules would only be enabled in `.ts` files and `svelte/*` rules would only be enabled in `.svelte` files. If you want to override the rules, you need to specify the file extension:
 
 ```js
 // eslint.config.js
-import iz7n from '@iz7n/eslint-config'
+import iz7n from "@iz7n/eslint-config";
 
 export default iz7n(
   {
     svelte: true,
-    typescript: true
+    typescript: true,
   },
   {
     // Remember to specify the file glob here, otherwise it might cause the svelte plugin to handle non-svelte files
-    files: ['**/*.svelte'],
+    files: ["**/*.svelte"],
     rules: {
-      'svelte/valid-prop-names-in-kit-pages': 'off',
+      "svelte/valid-prop-names-in-kit-pages": "off",
     },
   },
   {
     // Without `files`, they are general rules for all files
     rules: {
-      'style/semi': ['error', 'never'],
+      "style/semi": ["error", "never"],
     },
-  }
-)
+  },
+);
 ```
 
 We also provided the `overrides` options in each integration to make it easier:
@@ -265,26 +434,23 @@ Since v2.10.0, the factory function `iz7n()` returns a [`FlatConfigComposer` obj
 
 ```js
 // eslint.config.js
-import iz7n from '@iz7n/eslint-config'
+import iz7n from "@iz7n/eslint-config";
 
 export default iz7n()
-  .prepend(
-    // some configs before the main config
-  )
+  .prepend
+  // some configs before the main config
+  ()
   // overrides any named configs
-  .override(
-    'iz7n/imports',
-    {
-      rules: {
-        'import/order': ['error', { 'newlines-between': 'always' }],
-      }
-    }
-  )
+  .override("iz7n/imports", {
+    rules: {
+      "import/order": ["error", { "newlines-between": "always" }],
+    },
+  })
   // rename plugin prefixes
   .renamePlugins({
-    'old-prefix': 'new-prefix',
+    "old-prefix": "new-prefix",
     // ...
-  })
+  });
 // ...
 ```
 
@@ -294,11 +460,11 @@ Svelte support is detected automatically by checking if `svelte` is installed in
 
 ```js
 // eslint.config.js
-import iz7n from '@iz7n/eslint-config'
+import iz7n from "@iz7n/eslint-config";
 
 export default iz7n({
-  svelte: true
-})
+  svelte: true,
+});
 ```
 
 ### Optional Rules
@@ -325,15 +491,15 @@ You can add the trigger comment one line above the code you want to transform, f
 ```ts
 /// to-function
 const foo = async (msg: string): void => {
-  console.log(msg)
-}
+  console.log(msg);
+};
 ```
 
 Will be transformed to this when you hit save with your editor or run `eslint . --fix`:
 
 ```ts
 async function foo(msg: string): void {
-  console.log(msg)
+  console.log(msg);
 }
 ```
 
@@ -345,13 +511,13 @@ You can optionally enable the [type aware rules](https://typescript-eslint.io/li
 
 ```js
 // eslint.config.js
-import iz7n from '@iz7n/eslint-config'
+import iz7n from "@iz7n/eslint-config";
 
 export default iz7n({
   typescript: {
-    tsconfigPath: 'tsconfig.json',
+    tsconfigPath: "tsconfig.json",
   },
-})
+});
 ```
 
 ### Lint Staged

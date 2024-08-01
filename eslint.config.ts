@@ -1,5 +1,4 @@
-
-import { iz7n } from './src'
+import { iz7n } from "./src";
 
 export default iz7n(
   {
@@ -7,9 +6,9 @@ export default iz7n(
     typescript: true,
   },
   {
-    files: ['src/**/*.ts'],
+    files: ["src/**/*.ts"],
     rules: {
-      'perfectionist/sort-objects': 'error',
+      "perfectionist/sort-objects": "error",
     },
   },
-)
+);
