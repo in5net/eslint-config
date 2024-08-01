@@ -22,7 +22,7 @@ export async function perfectionist(): Promise<TypedFlatConfigItem[]> {
 				"perfectionist/sort-imports": [
 					"error",
 					{
-						"custom-groups": {
+						customGroups: {
 							value: {
 								svelte: [
 									"**/*.svelte",
@@ -32,7 +32,7 @@ export async function perfectionist(): Promise<TypedFlatConfigItem[]> {
 								],
 							},
 						},
-						"groups": [
+						groups: [
 							"svelte",
 							[
 								"builtin",
@@ -54,7 +54,7 @@ export async function perfectionist(): Promise<TypedFlatConfigItem[]> {
 								"unknown",
 							],
 						],
-						"type": "natural",
+						type: "natural",
 					},
 				],
 			},

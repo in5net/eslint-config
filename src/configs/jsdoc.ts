@@ -36,7 +36,6 @@ export async function jsdoc(): Promise<TypedFlatConfigItem[]> {
 				"jsdoc/no-types": "warn",
 				"jsdoc/no-undefined-types": "off", // TypeScript handles this
 				"jsdoc/require-asterisk-prefix": "warn",
-				"jsdoc/require-description-complete-sentence": "warn",
 				"jsdoc/require-hyphen-before-param-description": "warn",
 				"jsdoc/require-throws": "warn",
 				"jsdoc/sort-tags": "warn",
