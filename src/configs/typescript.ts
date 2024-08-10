@@ -118,7 +118,6 @@ export async function typescript(
 				"import/default": "off", // Doesn't work with TypeScript
 				"import/export": "error", // Doesn't work with TypeScript
 				"no-dupe-class-members": "off",
-				"no-loss-of-precision": "off",
 				"no-redeclare": "off",
 				"no-unused-expressions": "off",
 				"no-use-before-define": "off",
@@ -135,7 +134,6 @@ export async function typescript(
 				"ts/no-dupe-class-members": "error",
 				"ts/no-explicit-any": "off",
 				"ts/no-invalid-void-type": "off",
-				"ts/no-loss-of-precision": "error",
 				"ts/no-non-null-assertion": "off",
 				"ts/no-redeclare": "error",
 				"ts/no-require-imports": "error",
@@ -148,7 +146,6 @@ export async function typescript(
 				],
 				"ts/no-useless-empty-export": "error",
 				"ts/prefer-nullish-coalescing": "off",
-				"ts/prefer-ts-expect-error": "error",
 				"ts/unified-signatures": [
 					"error",
 					{ ignoreDifferentlyNamedParameters: true },
@@ -189,7 +186,6 @@ export async function typescript(
 			name: "iz7n/typescript/disables/cjs",
 			rules: {
 				"ts/no-require-imports": "off",
-				"ts/no-var-requires": "off",
 			},
 		},
 	];
