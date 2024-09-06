@@ -34,7 +34,6 @@ export async function unicorn(): Promise<TypedFlatConfigItem[]> {
 				"unicorn/no-instanceof-array": "error",
 				"unicorn/no-invalid-remove-event-listener": "error",
 				"unicorn/no-lonely-if": "error",
-				"unicorn/no-negated-condition": "error",
 				"unicorn/no-new-array": "error",
 				"unicorn/no-new-buffer": "error",
 				"unicorn/no-object-as-default-parameter": "error",
