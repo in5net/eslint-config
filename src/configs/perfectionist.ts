@@ -15,13 +15,13 @@ export async function perfectionist(): Promise<TypedFlatConfigItem[]> {
       },
       rules: {
         "perfectionist/sort-exports": [
-          "error",
+          "warn",
           {
             type: "natural",
           },
         ],
         "perfectionist/sort-imports": [
-          "error",
+          "warn",
           {
             customGroups: {
               value: {
@@ -38,16 +38,16 @@ export async function perfectionist(): Promise<TypedFlatConfigItem[]> {
               [
                 "builtin",
                 "external",
-                "builtin-type",
-                "external-type",
                 "internal",
                 "parent",
-                "siblings",
+                "sibling",
                 "side-effect",
                 "side-effect-style",
                 "index",
                 "object",
                 "style",
+                "external-type",
+                "builtin-type",
                 "internal-type",
                 "parent-type",
                 "sibling-type",
