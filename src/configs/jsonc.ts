@@ -19,7 +19,7 @@ export async function jsonc(
 
   return [
     {
-      name: "iz7n/jsonc/setup",
+      name: "in5net/jsonc/setup",
       plugins: {
         jsonc: pluginJsonc as any,
       },
@@ -29,7 +29,7 @@ export async function jsonc(
       languageOptions: {
         parser: parserJsonc,
       },
-      name: "iz7n/jsonc/rules",
+      name: "in5net/jsonc/rules",
       rules: {
         "jsonc/no-bigint-literals": "error",
         "jsonc/no-binary-expression": "error",

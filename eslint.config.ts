@@ -1,6 +1,6 @@
-import { iz7n } from "./src";
+import { in5net } from "./src";
 
-export default iz7n(
+export default in5net(
   {
     typescript: true,
   },

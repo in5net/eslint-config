@@ -4,7 +4,7 @@ import type { TypedFlatConfigItem } from "../types";
 export async function jsdoc(): Promise<TypedFlatConfigItem[]> {
   return [
     {
-      name: "iz7n/jsdoc/rules",
+      name: "in5net/jsdoc/rules",
       plugins: {
         jsdoc: await interopDefault(import("eslint-plugin-jsdoc")),
       },

@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 import { isPackageExists } from "local-pkg";
 
 const scopeUrl = fileURLToPath(new URL(".", import.meta.url));
-const isCwdInScope = isPackageExists("@iz7n/eslint-config");
+const isCwdInScope = isPackageExists("@in5net/eslint-config");
 
 export const parserPlain = {
   meta: {
@@ -44,7 +44,7 @@ export async function combine(
  *
  * @example
  * ```ts
- * import { renameRules } from '@iz7n/eslint-config'
+ * import { renameRules } from '@in5net/eslint-config'
  *
  * export default [{
  *   rules: renameRules(
@@ -76,7 +76,7 @@ export function renameRules(
  *
  * @example
  * ```ts
- * import { renamePluginInConfigs } from '@iz7n/eslint-config'
+ * import { renamePluginInConfigs } from '@in5net/eslint-config'
  * import someConfigs from './some-configs'
  *
  * export default renamePluginInConfigs(someConfigs, {
