@@ -36,7 +36,6 @@ export async function jsonc(
         "jsonc/no-binary-numeric-literals": "error",
         "jsonc/no-dupe-keys": "error",
         "jsonc/no-escape-sequence-in-identifier": "error",
-        "jsonc/no-floating-decimal": "error",
         "jsonc/no-hexadecimal-numeric-literals": "error",
         "jsonc/no-infinity": "error",
         "jsonc/no-multi-str": "error",
@@ -54,8 +53,8 @@ export async function jsonc(
         "jsonc/no-undefined-value": "error",
         "jsonc/no-unicode-codepoint-escapes": "error",
         "jsonc/no-useless-escape": "error",
-        "jsonc/space-unary-ops": "error",
         "jsonc/valid-json-number": "error",
+        "jsonc/no-comments": "error",
 
         ...overrides,
       },
