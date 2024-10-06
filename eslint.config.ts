@@ -2,6 +2,7 @@ import { in5net } from "./src";
 
 export default in5net(
   {
+    type: "lib",
     typescript: true,
   },
   {

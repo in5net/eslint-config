@@ -23,14 +23,10 @@ export async function perfectionist(): Promise<TypedFlatConfigItem[]> {
         "perfectionist/sort-imports": [
           "warn",
           {
+            matcher: "regex",
             customGroups: {
               value: {
-                svelte: [
-                  "**/*.svelte",
-                  "./*.svelte",
-                  "../*.svelte",
-                  "../**/*.svelte",
-                ],
+                svelte: ["\\.svelte$"],
               },
             },
             groups: [
