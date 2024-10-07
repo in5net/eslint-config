@@ -1,5 +1,5 @@
-import type { TypedFlatConfigItem } from "../types";
 import { pluginAntfu, pluginImport } from "../plugins";
+import type { TypedFlatConfigItem } from "../types";
 
 export async function imports(): Promise<TypedFlatConfigItem[]> {
   return [

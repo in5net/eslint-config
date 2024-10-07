@@ -3,7 +3,6 @@ import type { TypedFlatConfigItem } from "../types";
 
 /**
  * Perfectionist plugin for props and items sorting.
- *
  * @see https://github.com/azat-io/eslint-plugin-perfectionist
  */
 export async function perfectionist(): Promise<TypedFlatConfigItem[]> {
@@ -23,10 +22,9 @@ export async function perfectionist(): Promise<TypedFlatConfigItem[]> {
         "perfectionist/sort-imports": [
           "warn",
           {
-            matcher: "regex",
             customGroups: {
               value: {
-                svelte: ["\\.svelte$"],
+                svelte: [String.raw`\.svelte$`],
               },
             },
             groups: [
@@ -51,6 +49,7 @@ export async function perfectionist(): Promise<TypedFlatConfigItem[]> {
                 "unknown",
               ],
             ],
+            matcher: "regex",
             type: "natural",
           },
         ],

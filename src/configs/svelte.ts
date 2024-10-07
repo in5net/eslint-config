@@ -1,10 +1,10 @@
+import { GLOB_SVELTE } from "../globs";
 import type {
   OptionsFiles,
   OptionsHasTypeScript,
   OptionsOverrides,
   TypedFlatConfigItem,
 } from "../types";
-import { GLOB_SVELTE } from "../globs";
 import { ensurePackages, interopDefault } from "../utils";
 
 export async function svelte(
@@ -32,8 +32,9 @@ export async function svelte(
         parser: parserSvelte,
         parserOptions: {
           extraFileExtensions: [".svelte"],
-          parser: options.typescript
-            ? ((await interopDefault(
+          parser:
+            options.typescript ?
+              ((await interopDefault(
                 import("@typescript-eslint/parser"),
               )) as any)
             : null,
