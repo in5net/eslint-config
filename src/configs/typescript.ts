@@ -1,3 +1,6 @@
+/* eslint-disable perfectionist/sort-objects */
+import { GLOB_TS, GLOB_TSX } from "../globs";
+import { pluginAntfu } from "../plugins";
 import type {
   OptionsComponentExts,
   OptionsFiles,
@@ -7,10 +10,8 @@ import type {
   OptionsTypeScriptWithTypes,
   TypedFlatConfigItem,
 } from "../types";
-import process from "node:process";
-import { GLOB_TS, GLOB_TSX } from "../globs";
-import { pluginAntfu } from "../plugins";
 import { interopDefault, renameRules } from "../utils";
+import process from "node:process";
 
 export async function typescript(
   options: OptionsFiles &
@@ -31,7 +32,7 @@ export async function typescript(
   const files = options.files ?? [
     GLOB_TS,
     GLOB_TSX,
-    ...componentExts.map((ext) => `**/*.${ext}`),
+    ...componentExts.map(ext => `**/*.${ext}`),
   ];
 
   const filesTypeAware = options.filesTypeAware ?? [GLOB_TS, GLOB_TSX];
@@ -75,17 +76,17 @@ export async function typescript(
       languageOptions: {
         parser: parserTs,
         parserOptions: {
-          extraFileExtensions: componentExts.map((ext) => `.${ext}`),
+          extraFileExtensions: componentExts.map(ext => `.${ext}`),
           sourceType: "module",
-          ...(typeAware
-            ? {
-                projectService: {
-                  allowDefaultProject: ["./*.js"],
-                  defaultProject: tsconfigPath,
-                },
-                tsconfigRootDir: process.cwd(),
-              }
-            : {}),
+          ...(typeAware ?
+            {
+              projectService: {
+                allowDefaultProject: ["./*.js"],
+                defaultProject: tsconfigPath,
+              },
+              tsconfigRootDir: process.cwd(),
+            }
+          : {}),
           ...(parserOptions as any),
         },
       },
@@ -103,12 +104,12 @@ export async function typescript(
       },
     },
     // Assign type-aware parser for type-aware files and type-unaware parser for the rest
-    ...(isTypeAware
-      ? [
-          makeParser(true, filesTypeAware, ignoresTypeAware),
-          makeParser(false, files, filesTypeAware),
-        ]
-      : [makeParser(false, files)]),
+    ...(isTypeAware ?
+      [
+        makeParser(true, filesTypeAware, ignoresTypeAware),
+        makeParser(false, files, filesTypeAware),
+      ]
+    : [makeParser(false, files)]),
     {
       files,
       name: "in5net/typescript/rules",
@@ -125,8 +126,6 @@ export async function typescript(
         "default-param-last": "off",
         "import/default": "off", // Doesn't work with TypeScript
         "import/export": "error", // Doesn't work with TypeScript
-        "no-dupe-class-members": "off",
-        "no-redeclare": "off",
         "no-unused-expressions": "off",
         "no-use-before-define": "off",
         "no-useless-constructor": "off",
@@ -147,7 +146,7 @@ export async function typescript(
         "ts/no-require-imports": "error",
         "ts/no-unsafe-unary-minus": "error",
         "ts/no-unused-expressions": "error",
-        "ts/no-unused-vars": "off",
+        "ts/no-unused-vars": "off", // use unused-imports/no-unused-vars instead
         "ts/no-use-before-define": [
           "error",
           { classes: false, functions: false, variables: true },
@@ -159,33 +158,50 @@ export async function typescript(
           { ignoreDifferentlyNamedParameters: true },
         ],
 
-        ...(type === "lib"
-          ? {
-              "ts/explicit-function-return-type": [
-                "error",
-                {
-                  allowExpressions: true,
-                  allowHigherOrderFunctions: true,
-                  allowIIFEs: true,
-                },
-              ],
-            }
-          : {}),
+        // TypeScript handles these by itself
+        "constructor-super": "off",
+        "getter-return": "off",
+        "no-const-assign": "off",
+        "no-dupe-args": "off",
+        "no-dupe-class-members": "off",
+        "no-dupe-keys": "off",
+        "no-func-assign": "off",
+        "no-obj-calls": "off",
+        "no-redeclare": "off",
+        "no-setter-return": "off",
+        "no-this-before-super": "off",
+        "no-undef": "off",
+        "no-unreachable": "off",
+        "no-unsafe-negation": "off",
+        "no-invalid-this": "off",
+
+        ...(type === "lib" ?
+          {
+            "ts/explicit-function-return-type": [
+              "error",
+              {
+                allowExpressions: true,
+                allowHigherOrderFunctions: true,
+                allowIIFEs: true,
+              },
+            ],
+          }
+        : {}),
         ...overrides,
       },
     },
-    ...(isTypeAware
-      ? [
-          {
-            files: filesTypeAware,
-            ignores: ignoresTypeAware,
-            name: "antfu/typescript/rules-type-aware",
-            rules: {
-              ...typeAwareRules,
-              ...overridesTypeAware,
-            },
+    ...(isTypeAware ?
+      [
+        {
+          files: filesTypeAware,
+          ignores: ignoresTypeAware,
+          name: "antfu/typescript/rules-type-aware",
+          rules: {
+            ...typeAwareRules,
+            ...overridesTypeAware,
           },
-        ]
-      : []),
+        },
+      ]
+    : []),
   ];
 }
