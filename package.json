@@ -19,6 +19,7 @@
   "files": [
     "dist"
   ],
+  "prettier": "@in5net/prettier-config",
   "scripts": {
     "build": "nr typegen && tsup --format esm,cjs --clean --dts",
     "stub": "tsup --format esm",
@@ -91,6 +92,5 @@
     "@typescript-eslint/utils": "^8.7.0",
     "eslint": "^9.11.1",
     "tsx": "^4.19.1"
-  },
-  "prettier": "@in5net/prettier-config"
+  }
 }

@@ -140,7 +140,6 @@ export async function javascript(
         "no-unexpected-multiline": "error",
         "no-unmodified-loop-condition": "error",
         "no-unneeded-ternary": ["error", { defaultAssignment: false }],
-        "no-unneeded-ternary": ["error", { defaultAssignment: false }],
         "no-unreachable": "error",
         "no-unreachable-loop": "error",
         "no-unsafe-finally": "error",
@@ -208,7 +207,7 @@ export async function javascript(
         "require-yield": "error",
         "symbol-description": "error",
         "unicode-bom": "error",
-        "unused-imports/no-unused-imports": "error",
+        "unused-imports/no-unused-imports": "warn",
         "unused-imports/no-unused-vars": [
           "warn",
           {

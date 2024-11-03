@@ -31,7 +31,6 @@ export async function imports(): Promise<TypedFlatConfigItem[]> {
         "import/no-named-as-default": "warn",
         "import/no-named-as-default-member": "warn",
         "import/no-named-default": "warn",
-        "import/no-rename-default": "warn",
         "import/no-self-import": "error",
         "import/no-unused-modules": "warn",
         "no-duplicate-imports": "off",

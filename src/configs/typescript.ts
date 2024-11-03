@@ -157,6 +157,12 @@ export async function typescript(
           "error",
           { ignoreDifferentlyNamedParameters: true },
         ],
+        "ts/consistent-type-imports": [
+          "error",
+          {
+            prefer: "type-imports",
+          },
+        ],
 
         // TypeScript handles these by itself
         "constructor-super": "off",
