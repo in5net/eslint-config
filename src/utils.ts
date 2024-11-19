@@ -1,8 +1,7 @@
 import type { Awaitable, TypedFlatConfigItem } from "./types";
-
+import { isPackageExists } from "local-pkg";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
-import { isPackageExists } from "local-pkg";
 
 const scopeUrl = fileURLToPath(new URL(".", import.meta.url));
 const isCwdInScope = isPackageExists("@in5net/eslint-config");
@@ -32,7 +31,7 @@ export const parserPlain = {
  * Combine array and non-array configs into a single array.
  */
 export async function combine(
-  ...configs: Awaitable<TypedFlatConfigItem | TypedFlatConfigItem[]>[]
+  ...configs: Array<Awaitable<TypedFlatConfigItem | TypedFlatConfigItem[]>>
 ): Promise<TypedFlatConfigItem[]> {
   const resolved = await Promise.all(configs);
   return resolved.flat();
@@ -63,8 +62,9 @@ export function renameRules(
   return Object.fromEntries(
     Object.entries(rules).map(([key, value]) => {
       for (const [from, to] of Object.entries(map)) {
-        if (key.startsWith(`${from}/`))
+        if (key.startsWith(`${from}/`)) {
           return [to + key.slice(from.length), value];
+        }
       }
       return [key, value];
     }),
@@ -91,15 +91,15 @@ export function renamePluginInConfigs(
 ): TypedFlatConfigItem[] {
   return configs.map(i => {
     const clone = { ...i };
-    if (clone.rules) clone.rules = renameRules(clone.rules, map);
-    if (clone.plugins) {
-      clone.plugins = Object.fromEntries(
-        Object.entries(clone.plugins).map(([key, value]) => {
-          if (key in map) return [map[key], value];
-          return [key, value];
-        }),
-      );
-    }
+    clone.rules &&= renameRules(clone.rules, map);
+    clone.plugins &&= Object.fromEntries(
+      Object.entries(clone.plugins).map(([key, value]) => {
+        if (key in map) {
+          return [map[key], value];
+        }
+        return [key, value];
+      }),
+    );
     return clone;
   });
 }
@@ -120,35 +120,30 @@ export function isPackageInScope(name: string): boolean {
 }
 
 export async function ensurePackages(
-  packages: (string | undefined)[],
+  packages: Array<string | undefined>,
 ): Promise<void> {
   if (
     process.env.CI ||
     process.stdout.isTTY === false ||
     isCwdInScope === false
-  )
+  ) {
     return;
+  }
 
   const nonExistingPackages = packages.filter(
     i => i && !isPackageInScope(i),
   ) as string[];
-  if (nonExistingPackages.length === 0) return;
+  if (nonExistingPackages.length === 0) {
+    return;
+  }
 
   const p = await import("@clack/prompts");
   const result = await p.confirm({
     message: `${nonExistingPackages.length === 1 ? "Package is" : "Packages are"} required for this config: ${nonExistingPackages.join(", ")}. Do you want to install them?`,
   });
-  if (result)
+  if (result) {
     await import("@antfu/install-pkg").then(i =>
       i.installPackage(nonExistingPackages, { dev: true }),
     );
-}
-
-export function isInGitHooksOrLintStaged(): boolean {
-  return !!(
-    false ||
-    process.env.GIT_PARAMS ||
-    process.env.VSCODE_GIT_COMMAND ||
-    process.env.npm_lifecycle_script?.startsWith("lint-staged")
-  );
+  }
 }

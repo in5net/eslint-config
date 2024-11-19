@@ -17,7 +17,7 @@ export async function unicorn(): Promise<TypedFlatConfigItem[]> {
         "unicorn/custom-error-definition": "error",
         "unicorn/error-message": "error",
         "unicorn/escape-case": "error",
-        "unicorn/expiring-todo-comments": "error",
+        "unicorn/expiring-todo-comments": "off", // TODO: broken in eslint 9.15.0
         "unicorn/filename-case": "error",
         "unicorn/import-style": "error",
         "unicorn/new-for-builtins": "error",

@@ -203,7 +203,6 @@ export async function javascript(
         "prefer-spread": "error",
         "prefer-template": "error",
         "radix": ["error", "as-needed"],
-        "require-await": "error",
         "require-yield": "error",
         "symbol-description": "error",
         "unicode-bom": "error",
