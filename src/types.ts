@@ -1,4 +1,4 @@
-import type { RuleOptions } from "./typegen";
+import type { ConfigNames, RuleOptions } from "./typegen";
 import type { ParserOptions } from "@typescript-eslint/parser";
 import type { Linter } from "eslint";
 import type { FlatGitignoreOptions } from "eslint-config-flat-gitignore";
@@ -7,7 +7,8 @@ export type Awaitable<T> = T | Promise<T>;
 
 export type Rules = RuleOptions;
 
-export { type ConfigNames } from "./typegen";
+// eslint-disable-next-line unicorn/prefer-export-from
+export type { ConfigNames };
 
 export type TypedFlatConfigItem = Omit<
   Linter.Config<Linter.RulesRecord & Rules>,
