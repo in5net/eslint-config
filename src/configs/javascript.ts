@@ -172,7 +172,7 @@ export async function javascript(
         "no-useless-rename": "error",
         "no-useless-return": "error",
         "no-var": "error",
-        "no-void": "error",
+        "no-void": ["error", { allowAsStatement: true }], // useful for not awaiting floating promises
         "no-with": "error",
         "object-shorthand": [
           "error",
