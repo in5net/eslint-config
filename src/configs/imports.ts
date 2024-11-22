@@ -4,7 +4,7 @@ import type { TypedFlatConfigItem } from "../types";
 export async function imports(): Promise<TypedFlatConfigItem[]> {
   return [
     {
-      name: "in5net/imports/rules",
+      name: "iz7n/imports/rules",
       plugins: {
         antfu: pluginAntfu,
         import: pluginImport,

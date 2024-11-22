@@ -7,7 +7,7 @@ export async function ignores(
   return [
     {
       ignores: [...GLOB_EXCLUDE, ...userIgnores],
-      name: "in5net/ignores",
+      name: "iz7n/ignores",
     },
   ];
 }

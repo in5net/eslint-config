@@ -1,9 +1,9 @@
 import { createJiti } from "jiti";
 
 const jiti = createJiti(import.meta.url);
-const { in5net } = await jiti.import("./src");
+const { iz7n } = await jiti.import("./src");
 
-export default in5net(
+export default iz7n(
   {
     type: "lib",
     typescript: true,

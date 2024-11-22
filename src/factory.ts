@@ -52,7 +52,7 @@ export const defaultPluginRenaming = {
  * @returns
  * The merged ESLint configurations.
  */
-export function in5net(
+export function iz7n(
   options: OptionsConfig & TypedFlatConfigItem = {},
   ...userConfigs: Array<
     Awaitable<
@@ -80,7 +80,7 @@ export function in5net(
       configs.push(
         interopDefault(import("eslint-config-flat-gitignore")).then(r => [
           r({
-            name: "in5net/gitignore",
+            name: "iz7n/gitignore",
             ...enableGitignore,
           }),
         ]),
@@ -89,7 +89,7 @@ export function in5net(
       configs.push(
         interopDefault(import("eslint-config-flat-gitignore")).then(r => [
           r({
-            name: "in5net/gitignore",
+            name: "iz7n/gitignore",
             strict: false,
           }),
         ]),

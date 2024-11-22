@@ -4,7 +4,7 @@ import type { TypedFlatConfigItem } from "../types";
 export async function node(): Promise<TypedFlatConfigItem[]> {
   return [
     {
-      name: "in5net/node/rules",
+      name: "iz7n/node/rules",
       plugins: {
         node: pluginNode,
       },

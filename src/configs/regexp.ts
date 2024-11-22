@@ -25,7 +25,7 @@ export async function regexp(
   return [
     {
       ...config,
-      name: "in5net/regexp/rules",
+      name: "iz7n/regexp/rules",
       rules: {
         ...rules,
         ...options.overrides,

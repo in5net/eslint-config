@@ -31,7 +31,7 @@ export async function javascript(
       linterOptions: {
         reportUnusedDisableDirectives: true,
       },
-      name: "in5net/javascript/rules",
+      name: "iz7n/javascript/rules",
       plugins: {
         "unused-imports": pluginUnusedImports,
       },
