@@ -47,7 +47,6 @@ export async function perfectionist(): Promise<TypedFlatConfigItem[]> {
                 "unknown",
               ],
             ],
-            matcher: "regex",
             type: "natural",
           },
         ],
