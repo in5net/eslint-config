@@ -25,7 +25,6 @@ export async function unicorn(): Promise<TypedFlatConfigItem[]> {
         "unicorn/no-array-for-each": "error",
         "unicorn/no-array-method-this-argument": "error",
         "unicorn/no-array-push-push": "error",
-        "unicorn/no-array-reduce": "error",
         "unicorn/no-await-expression-member": "error",
         "unicorn/no-console-spaces": "error",
         "unicorn/no-document-cookie": "error",
