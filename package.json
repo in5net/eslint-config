@@ -1,7 +1,7 @@
 {
   "name": "@iz7n/eslint-config",
   "type": "module",
-  "version": "0.14.0",
+  "version": "0.14.1",
   "packageManager": "pnpm@9.13.2",
   "description": "iz7n's ESLint config",
   "license": "MIT",
