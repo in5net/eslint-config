@@ -73,7 +73,7 @@
     "@antfu/ni": "^0.23.1",
     "@eslint/config-inspector": "^0.6.0",
     "@in5net/eslint-config": "workspace:*",
-    "@in5net/prettier-config": "^1.4.0",
+    "@in5net/prettier-config": "^1.4.2",
     "@types/node": "^22.10.2",
     "bumpp": "^9.9.1",
     "eslint": "^9.16.0",
