@@ -1,4 +1,4 @@
-# @iz7n/eslint-config
+# @in5net/eslint-config
 
 - Aimed to be used **with** Prettier
 - Reasonable defaults, best practices, only one line of config
@@ -18,16 +18,16 @@
 If you prefer to set up manually:
 
 ```bash
-pnpm i -D eslint @iz7n/eslint-config
+pnpm i -D eslint @in5net/eslint-config
 ```
 
 And create `eslint.config.mjs` in your project root:
 
 ```js
 // eslint.config.mjs
-import iz7n from "@iz7n/eslint-config";
+import in5net from "@in5net/eslint-config";
 
-export default iz7n();
+export default in5net();
 ```
 
 <details>
@@ -39,12 +39,12 @@ If you still use some configs from the legacy eslintrc format, you can use the [
 
 ```js
 // eslint.config.mjs
-import iz7n from "@iz7n/eslint-config";
+import in5net from "@in5net/eslint-config";
 import { FlatCompat } from "@eslint/eslintrc";
 
 const compat = new FlatCompat();
 
-export default iz7n(
+export default in5net(
   {
     ignores: [],
   },
@@ -214,22 +214,22 @@ lspconfig.eslint.setup({
 
 Since v1.0, we migrated to [ESLint Flat config](https://eslint.org/docs/latest/use/configure/configuration-files-new). It provides much better organization and composition.
 
-Normally you only need to import the `iz7n` preset:
+Normally you only need to import the `in5net` preset:
 
 ```js
 // eslint.config.js
-import iz7n from "@iz7n/eslint-config";
+import in5net from "@in5net/eslint-config";
 
-export default iz7n();
+export default in5net();
 ```
 
 And that's it! Or you can configure each integration individually, for example:
 
 ```js
 // eslint.config.js
-import iz7n from "@iz7n/eslint-config";
+import in5net from "@in5net/eslint-config";
 
-export default iz7n({
+export default in5net({
   // Type of the project. 'lib' for libraries, the default is 'app'
   type: "lib",
 
@@ -253,15 +253,15 @@ export default iz7n({
 });
 ```
 
-The `iz7n` factory function also accepts any number of arbitrary custom config overrides:
+The `in5net` factory function also accepts any number of arbitrary custom config overrides:
 
 ```js
 // eslint.config.js
-import iz7n from "@iz7n/eslint-config";
+import in5net from "@in5net/eslint-config";
 
-export default iz7n(
+export default in5net(
   {
-    // Configures for iz7n's config
+    // Configures for in5net's config
   },
 
   // From the second arguments they are ESLint Flat Configs
@@ -298,7 +298,7 @@ import {
   sortTsconfig,
   typescript,
   unicorn,
-} from "@iz7n/eslint-config";
+} from "@in5net/eslint-config";
 
 export default combine(
   ignores(),
@@ -315,7 +315,7 @@ export default combine(
 
 </details>
 
-Check out the [configs](https://github.com/iz7n/eslint-config/blob/main/src/configs) and [factory](https://github.com/iz7n/eslint-config/blob/main/src/factory.ts) for more details.
+Check out the [configs](https://github.com/in5net/eslint-config/blob/main/src/configs) and [factory](https://github.com/in5net/eslint-config/blob/main/src/factory.ts) for more details.
 
 > Thanks to [sxzz/eslint-config](https://github.com/sxzz/eslint-config) for the inspiration and reference.
 
@@ -354,9 +354,9 @@ Since v2.9.0, this preset will automatically rename the plugins also for your cu
 If you really want to use the original prefix, you can revert the plugin renaming by:
 
 ```ts
-import iz7n from "@iz7n/eslint-config";
+import in5net from "@in5net/eslint-config";
 
-export default iz7n().renamePlugins({
+export default in5net().renamePlugins({
   ts: "@typescript-eslint",
   yaml: "yml",
   node: "n",
@@ -372,9 +372,9 @@ Certain rules would only be enabled in specific files, for example, `ts/*` rules
 
 ```js
 // eslint.config.js
-import iz7n from "@iz7n/eslint-config";
+import in5net from "@in5net/eslint-config";
 
-export default iz7n(
+export default in5net(
   {
     svelte: true,
     typescript: true,
@@ -399,9 +399,9 @@ We also provided the `overrides` options in each integration to make it easier:
 
 ```js
 // eslint.config.js
-import iz7n from '@iz7n/eslint-config'
+import in5net from '@in5net/eslint-config'
 
-export default iz7n({
+export default in5net({
   svelte: {
     overrides: {
       'svelte/valid-prop-names-in-kit-pages': 'off,
@@ -422,18 +422,18 @@ export default iz7n({
 
 ### Config Composer
 
-Since v2.10.0, the factory function `iz7n()` returns a [`FlatConfigComposer` object from `eslint-flat-config-utils`](https://github.com/antfu/eslint-flat-config-utils#composer) where you can chain the methods to compose the config even more flexibly.
+Since v2.10.0, the factory function `in5net()` returns a [`FlatConfigComposer` object from `eslint-flat-config-utils`](https://github.com/antfu/eslint-flat-config-utils#composer) where you can chain the methods to compose the config even more flexibly.
 
 ```js
 // eslint.config.js
-import iz7n from "@iz7n/eslint-config";
+import in5net from "@in5net/eslint-config";
 
-export default iz7n()
+export default in5net()
   .prepend
   // some configs before the main config
   ()
   // overrides any named configs
-  .override("iz7n/imports", {
+  .override("in5net/imports", {
     rules: {
       "import/order": ["error", { "newlines-between": "always" }],
     },
@@ -452,9 +452,9 @@ Svelte support is detected automatically by checking if `svelte` is installed in
 
 ```js
 // eslint.config.js
-import iz7n from "@iz7n/eslint-config";
+import in5net from "@in5net/eslint-config";
 
-export default iz7n({
+export default in5net({
   svelte: true,
 });
 ```
@@ -503,9 +503,9 @@ You can optionally enable the [type aware rules](https://typescript-eslint.io/li
 
 ```js
 // eslint.config.js
-import iz7n from "@iz7n/eslint-config";
+import in5net from "@in5net/eslint-config";
 
-export default iz7n({
+export default in5net({
   typescript: {
     tsconfigPath: "tsconfig.json",
   },

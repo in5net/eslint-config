@@ -1,9 +1,9 @@
 {
-  "name": "@iz7n/eslint-config",
+  "name": "@in5net/eslint-config",
   "type": "module",
   "version": "0.14.1",
   "packageManager": "pnpm@9.13.2",
-  "description": "iz7n's ESLint config",
+  "description": "in5net's ESLint config",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -19,7 +19,7 @@
   "files": [
     "dist"
   ],
-  "prettier": "@iz7n/prettier-config",
+  "prettier": "@in5net/prettier-config",
   "scripts": {
     "build": "nr typegen && tsup --format esm,cjs --clean --dts",
     "stub": "tsup --format esm",
@@ -72,8 +72,8 @@
   "devDependencies": {
     "@antfu/ni": "^0.23.1",
     "@eslint/config-inspector": "^0.6.0",
-    "@iz7n/eslint-config": "workspace:*",
-    "@iz7n/prettier-config": "^1.4.0",
+    "@in5net/eslint-config": "workspace:*",
+    "@in5net/prettier-config": "^1.4.0",
     "@types/node": "^22.10.2",
     "bumpp": "^9.9.1",
     "eslint": "^9.16.0",

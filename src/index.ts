@@ -1,4 +1,4 @@
-import { iz7n } from "./factory";
+import { in5net } from "./factory";
 
 export * from "./configs";
 export * from "./factory";
@@ -7,4 +7,4 @@ export * from "./types";
 export * from "./utils";
 
 // eslint-disable-next-line unicorn/prefer-export-from
-export default iz7n;
+export default in5net;

@@ -5,7 +5,7 @@ export async function disables(): Promise<TypedFlatConfigItem[]> {
   return [
     {
       files: [`**/scripts/${GLOB_SRC}`],
-      name: "iz7n/disables/scripts",
+      name: "in5net/disables/scripts",
       rules: {
         "antfu/no-top-level-await": "off",
         "no-console": "off",
@@ -14,7 +14,7 @@ export async function disables(): Promise<TypedFlatConfigItem[]> {
     },
     {
       files: [`**/cli/${GLOB_SRC}`, `**/cli.${GLOB_SRC_EXT}`],
-      name: "iz7n/disables/cli",
+      name: "in5net/disables/cli",
       rules: {
         "antfu/no-top-level-await": "off",
         "no-console": "off",
@@ -22,7 +22,7 @@ export async function disables(): Promise<TypedFlatConfigItem[]> {
     },
     {
       files: ["**/bin/**/*", `**/bin.${GLOB_SRC_EXT}`],
-      name: "iz7n/disables/bin",
+      name: "in5net/disables/bin",
       rules: {
         "antfu/no-import-dist": "off",
         "antfu/no-import-node-modules-by-path": "off",
@@ -30,7 +30,7 @@ export async function disables(): Promise<TypedFlatConfigItem[]> {
     },
     {
       files: ["**/*.d.?([cm])ts"],
-      name: "iz7n/disables/dts",
+      name: "in5net/disables/dts",
       rules: {
         "eslint-comments/no-unlimited-disable": "off",
         "import/no-duplicates": "off",
@@ -40,14 +40,14 @@ export async function disables(): Promise<TypedFlatConfigItem[]> {
     },
     {
       files: ["**/*.js", "**/*.cjs"],
-      name: "iz7n/disables/cjs",
+      name: "in5net/disables/cjs",
       rules: {
         "ts/no-require-imports": "off",
       },
     },
     {
       files: [`**/*.config.${GLOB_SRC_EXT}`, `**/*.config.*.${GLOB_SRC_EXT}`],
-      name: "iz7n/disables/config-files",
+      name: "in5net/disables/config-files",
       rules: {
         "antfu/no-top-level-await": "off",
         "no-console": "off",

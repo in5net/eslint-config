@@ -4,7 +4,7 @@ import type { TypedFlatConfigItem } from "../types";
 export async function unicorn(): Promise<TypedFlatConfigItem[]> {
   return [
     {
-      name: "iz7n/unicorn/rules",
+      name: "in5net/unicorn/rules",
       plugins: {
         unicorn: pluginUnicorn,
       },

@@ -21,7 +21,7 @@ export async function svelte(
 
   return [
     {
-      name: "iz7n/svelte/setup",
+      name: "in5net/svelte/setup",
       plugins: {
         svelte: pluginSvelte,
       },
@@ -40,7 +40,7 @@ export async function svelte(
             : null,
         },
       },
-      name: "iz7n/svelte/rules",
+      name: "in5net/svelte/rules",
       processor: pluginSvelte.processors[".svelte"],
       rules: {
         "import/no-mutable-exports": "off", // Svelte props are declared as mutable exports
