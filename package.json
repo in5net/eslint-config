@@ -1,7 +1,7 @@
 {
   "name": "@in5net/eslint-config",
   "type": "module",
-  "version": "0.14.2",
+  "version": "0.15.0",
   "packageManager": "pnpm@10.0.0",
   "description": "prismancy's ESLint config",
   "license": "MIT",
