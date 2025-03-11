@@ -104,7 +104,6 @@ export async function svelte(
         "svelte/no-unused-svelte-ignore": "error",
         "svelte/no-useless-mustaches": "warn",
         "svelte/prefer-class-directive": "error",
-        "svelte/prefer-destructured-store-props": "error",
         "svelte/require-event-dispatcher-types": "error",
         "svelte/require-optimized-style-attribute": "warn",
         "svelte/require-store-callbacks-use-set-param": "error",
