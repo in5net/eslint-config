@@ -71,7 +71,6 @@ export async function unicorn(): Promise<TypedFlatConfigItem[]> {
         "unicorn/prefer-dom-node-text-content": "error",
         "unicorn/prefer-event-target": "error",
         "unicorn/prefer-export-from": "error",
-        "unicorn/prefer-global-this": "error",
         "unicorn/prefer-includes": "error",
         "unicorn/prefer-json-parse-buffer": "error",
         "unicorn/prefer-keyboard-event-key": "error",
