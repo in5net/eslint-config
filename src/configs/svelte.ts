@@ -77,7 +77,6 @@ export async function svelte(
         "svelte/html-self-closing": ["warn", "all"],
         "svelte/infinite-reactive-loop": "error",
         "svelte/no-at-debug-tags": "warn",
-        "svelte/no-at-html-tags": "warn",
         "svelte/no-dupe-else-if-blocks": "error",
         "svelte/no-dupe-on-directives": "error",
         "svelte/no-dupe-style-properties": "error",
