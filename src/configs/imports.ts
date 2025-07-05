@@ -22,7 +22,6 @@ export async function imports(): Promise<TypedFlatConfigItem[]> {
         "import/newline-after-import": ["warn", { considerComments: true }],
         "import/no-absolute-path": "error",
         "import/no-amd": "error",
-        "import/no-anonymous-default-export": "error",
         "import/no-commonjs": "error",
         "import/no-deprecated": "warn",
         "import/no-duplicates": ["error", { "prefer-inline": true }],
