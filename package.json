@@ -69,9 +69,9 @@
   "devDependencies": {
     "@antfu/ni": "^23.3.1",
     "@eslint/config-inspector": "^1.0.0",
-    "@in5net/eslint-config": "workspace:*",
-    "@in5net/prettier-config": "^2.0.0",
     "@types/node": "^22.13.0",
+    "@in5net/eslint-config": "workspace:*",
+    "@in5net/prettier-config": "^1.0.0",
     "bumpp": "^10.0.1",
     "eslint": "^9.19.0",
     "eslint-plugin-svelte": "^2.46.1",
