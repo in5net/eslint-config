@@ -81,18 +81,18 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
     devDependencies:
-      '@in5net/eslint-config':
-        specifier: workspace:*
-        version: 'link:'
       '@antfu/ni':
         specifier: ^23.3.1
         version: 23.3.1
       '@eslint/config-inspector':
         specifier: ^1.0.0
         version: 1.0.0(eslint@9.20.0(jiti@2.4.2))
+      '@in5net/eslint-config':
+        specifier: workspace:*
+        version: 'link:'
       '@in5net/prettier-config':
-        specifier: ^1.0.0
-        version: 1.0.0(prettier@3.6.2)
+        specifier: ^1.1.1
+        version: 1.1.1(prettier@3.6.2)
       '@types/node':
         specifier: ^22.13.0
         version: 22.13.1
@@ -539,6 +539,11 @@ packages:
     resolution: {integrity: sha512-c7hNEllBlenFTHBky65mhq8WD2kbN9Q6gk0bTk8lSBvc554jpXSkST1iePudpt7+A/AQvuHs9EMqjHDXMY1lrA==}
     engines: {node: '>=18.18'}
 
+  '@in5net/prettier-config@1.1.1':
+    resolution: {integrity: sha512-16721vu/ZpaTE+WrchJQNy+cDLVCui8DqeeJW3JJOkCeHNPiVZrG0RD7KUSiYue5/vuh39V8oMwYkpya/CFqsA==}
+    peerDependencies:
+      prettier: '>=3.1.0'
+
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
     engines: {node: '>=12'}
@@ -595,11 +600,6 @@ packages:
   '@pkgr/core@0.1.1':
     resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
-
-  '@in5net/prettier-config@1.0.0':
-    resolution: {integrity: sha512-uQHMvMZVYZVpHKra7+o3ryWLba0op4Oj0LP0FjwzJSunpRSmF8cEBivRsp71vxAHW5PatDJcwCwn98393dJJrA==}
-    peerDependencies:
-      prettier: '>=3.1.0'
 
   '@rollup/rollup-android-arm-eabi@4.34.6':
     resolution: {integrity: sha512-+GcCXtOQoWuC7hhX1P00LqjjIiS/iOouHXhMdiDSnq/1DGTox4SpUvO52Xm+div6+106r+TcvOeo/cxvyEyTgg==}
@@ -2413,6 +2413,10 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.1': {}
 
+  '@in5net/prettier-config@1.1.1(prettier@3.6.2)':
+    dependencies:
+      prettier: 3.6.2
+
   '@isaacs/cliui@8.0.2':
     dependencies:
       string-width: 5.1.2
@@ -2469,10 +2473,6 @@ snapshots:
     optional: true
 
   '@pkgr/core@0.1.1': {}
-
-  '@in5net/prettier-config@1.0.0(prettier@3.6.2)':
-    dependencies:
-      prettier: 3.6.2
 
   '@rollup/rollup-android-arm-eabi@4.34.6':
     optional: true
